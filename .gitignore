@@ -1,0 +1,8 @@
+# Folders
+*.local
+.vscode/*
+dist
+dist-ssr
+node_modules
+
+!.vscode/extensions.json
