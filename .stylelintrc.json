@@ -1,0 +1,22 @@
+{
+  "extends": [
+    "stylelint-8-point-grid",
+    "stylelint-config-standard-scss",
+    "stylelint-config-prettier-scss",
+    "stylelint-prettier/recommended"
+  ],
+  "plugins": [
+    "stylelint-order",
+    "stylelint-prettier"
+  ],
+  "rules": {
+    "order/properties-alphabetical-order": true,
+    "order/order": [
+      "custom-properties",
+      "declarations"
+    ],
+    "plugin/8-point-grid": {
+      "base": 4
+    }
+  }
+}

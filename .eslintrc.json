@@ -1,0 +1,174 @@
+{
+  "env": {
+    "browser": true,
+    "es2020": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:react/recommended",
+    "airbnb",
+    "plugin:prettier/recommended"
+  ],
+  "ignorePatterns": [
+    "dist",
+    ".eslintrc.cjs"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "react-refresh",
+    "eslint-plugin-import-helpers",
+    "unused-imports",
+    "typescript-sort-keys",
+    "sort-destructure-keys"
+  ],
+  "root": true,
+  "rules": {
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        "format": [
+          "camelCase",
+          "StrictPascalCase",
+          "UPPER_CASE"
+        ],
+        "leadingUnderscore": "allow",
+        "selector": "default",
+        "trailingUnderscore": "allow"
+      },
+      {
+        "custom": {
+          "match": true,
+          "regex": "^T"
+        },
+        "format": [
+          "PascalCase"
+        ],
+        "selector": "typeParameter"
+      },
+      {
+        "custom": {
+          "match": true,
+          "regex": "Don't use interface"
+        },
+        "format": [
+          "StrictPascalCase"
+        ],
+        "selector": "interface"
+      },
+      {
+        "format": [
+          "StrictPascalCase"
+        ],
+        "selector": "typeLike",
+        "suffix": [
+          "Type",
+          "Props"
+        ]
+      }
+    ],
+    "@typescript-eslint/no-empty-function": "off",
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "@typescript-eslint/no-unused-vars": "off",
+    "class-methods-use-this": "off",
+    "import-helpers/order-imports": [
+      "error",
+      {
+        "alphabetize": {
+          "ignoreCase": true,
+          "order": "asc"
+        },
+        "groups": [
+          "parent",
+          "module",
+          "/^src/",
+          [
+            "sibling",
+            "index"
+          ]
+        ],
+        "newlinesBetween": "always"
+      }
+    ],
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
+    "import/prefer-default-export": "off",
+    "no-console": "off",
+    "no-underscore-dangle": "off",
+    "prefer-destructuring": [
+      "error",
+      {
+        "array": true,
+        "object": true
+      },
+      {
+        "enforceForRenamedProperties": false
+      }
+    ],
+    "prettier/prettier": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "react-hooks/rules-of-hooks": "error",
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [
+          ".tsx"
+        ]
+      }
+    ],
+    "react/jsx-props-no-spreading": "off",
+    "react/jsx-sort-props": [
+      "error",
+      {
+        "callbacksLast": true,
+        "reservedFirst": true,
+        "shorthandLast": true
+      }
+    ],
+    "react/react-in-jsx-scope": "off",
+    "react/require-default-props": "off",
+    "sort-destructure-keys/sort-destructure-keys": [
+      2,
+      {
+        "caseSensitive": false
+      }
+    ],
+    "typescript-sort-keys/interface": [
+      "error",
+      "asc",
+      {
+        "natural": true,
+        "requiredFirst": true
+      }
+    ],
+    "unused-imports/no-unused-imports": "error",
+    "unused-imports/no-unused-vars": [
+      "warn",
+      {
+        "args": "after-used",
+        "argsIgnorePattern": "^_",
+        "vars": "all",
+        "varsIgnorePattern": "^_"
+      }
+    ]
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {
+        "paths": [
+          "src"
+        ]
+      }
+    }
+  }
+}
