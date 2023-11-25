@@ -1,1 +1,95 @@
 @import 'antd/dist/reset.css';
+@import 'variables';
+
+::-webkit-scrollbar {
+  background-color: $ant-gray-1;
+  /* stylelint-disable-next-line plugin/8-point-grid */
+  height: 6px;
+  /* stylelint-disable-next-line plugin/8-point-grid */
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $ant-gray-8;
+  border-radius: 16px;
+}
+
+::-webkit-scrollbar-corner {
+  background-color: $ant-gray-1;
+}
+
+html {
+  // Get value from browser (Default 16px)
+  font-size: 100%;
+
+  > body {
+    > #root {
+      height: 100%;
+    }
+  }
+
+  @media (width < $lg) {
+    font-size: 93.75%; /* 15px */
+  }
+
+  @media (width < $md) {
+    font-size: 87.5%; /* 14px */
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0 !important;
+}
+
+/* Ant Design */
+
+/* #region Divider */
+.ant-divider {
+  margin: 12px 0;
+}
+
+/* #endregion */
+
+/* #region Tabs */
+.ant-tabs-small .ant-tabs-tab {
+  padding-bottom: 4px !important;
+  padding-top: 4px !important;
+}
+
+/* #endregion */
+
+/* #region Modal */
+.ant-modal-root > .ant-modal-wrap {
+  > .ant-modal {
+    top: 96px;
+
+    > .ant-modal-content {
+      display: flex;
+      flex-direction: column;
+      max-height: calc(92vh - 96px);
+
+      > .ant-modal-body {
+        overflow-y: auto;
+        padding: 0 8px;
+      }
+    }
+  }
+
+  &.ant-modal-centered > .ant-modal {
+    top: 0;
+  }
+
+  @media (width < $xs) {
+    > .ant-modal > .ant-modal-content {
+      padding-left: 12px;
+      padding-right: 12px;
+    }
+  }
+}
+
+/* #endregion */
