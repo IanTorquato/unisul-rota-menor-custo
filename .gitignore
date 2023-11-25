@@ -1,6 +1,5 @@
 # Folders
 *.local
-build
 dist
 dist-ssr
 node_modules
