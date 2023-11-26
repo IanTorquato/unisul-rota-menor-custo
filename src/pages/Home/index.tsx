@@ -1,22 +1,24 @@
 import { Button, Card, Col, Flex, Form, Layout, Row, Select, Typography } from 'antd';
 import { DefaultOptionType } from 'antd/es/select';
-import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
+import { MapContainer, Marker, TileLayer, Tooltip } from 'react-leaflet';
 
 import { getColBreakpoints } from 'src/utils/getColBreakpoints';
 
-import { CITY_OPTIONS } from './cities';
+import { CITY_COORDINATES, CITY_OPTIONS } from './cities';
 
 import './styles.scss';
 
 function useHome() {
   const [formInstance] = Form.useForm();
-  const selectedOrigin = Form.useWatch<string | undefined>('origin', formInstance);
 
-  return { formInstance, selectedOrigin };
+  const selectedOrigin = Form.useWatch<string | undefined>('origem', formInstance);
+  const selectedDestination = Form.useWatch<string | undefined>('destino', formInstance);
+
+  return { formInstance, selectedOrigin, selectedDestination };
 }
 
 export function Home() {
-  const { formInstance, selectedOrigin } = useHome();
+  const { formInstance, selectedDestination, selectedOrigin } = useHome();
 
   return (
     <div className="home-container">
@@ -28,15 +30,15 @@ export function Home() {
         <Form className="inputs-container" form={formInstance} layout="vertical" onFinish={console.log}>
           <Row gutter={12}>
             <Col {...getColBreakpoints(7)}>
-              <Form.Item label="Origem" name="origin" rules={[{ required: true }]} required>
+              <Form.Item label="Origem" name="origem" rules={[{ required: true }]} required>
                 <Select
                   options={CITY_OPTIONS}
                   placeholder="Selecione uma cidade"
                   autoFocus
                   showSearch
                   onSelect={(newOrigin: string) => {
-                    if (newOrigin === formInstance.getFieldValue('destination')) {
-                      formInstance.setFieldValue('destination', undefined);
+                    if (newOrigin === formInstance.getFieldValue('destino')) {
+                      formInstance.setFieldValue('destino', undefined);
                     }
                   }}
                 />
@@ -44,7 +46,7 @@ export function Home() {
             </Col>
 
             <Col {...getColBreakpoints(7)}>
-              <Form.Item label="Destino" name="destination" rules={[{ required: true }]} required>
+              <Form.Item label="Destino" name="destino" rules={[{ required: true }]} required>
                 <Select
                   options={CITY_OPTIONS.map(microRegion => ({
                     ...microRegion,
@@ -57,7 +59,7 @@ export function Home() {
             </Col>
 
             <Col {...getColBreakpoints(7)}>
-              <Form.Item initialValue="Carro" label="Veículo" name="vehicle" rules={[{ required: true }]} required>
+              <Form.Item initialValue="Carro" label="Veículo" name="veiculo" rules={[{ required: true }]} required>
                 <Select
                   options={[
                     { label: 'Carro', value: 'Carro' },
@@ -82,17 +84,27 @@ export function Home() {
 
         <div className="map-container">
           <Card size="small">
-            <MapContainer center={[-28.3341378, -49.0332305]} id="map" scrollWheelZoom={false} zoom={14}>
+            <MapContainer center={[-24.7548828, -50.3667741]} id="map" scrollWheelZoom={false} zoom={9}>
               <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               />
 
-              <Marker position={[-28.3301378, -49.0322305]}>
-                <Popup>
-                  A pretty CSS3 popup. <br /> Easily customizable.
-                </Popup>
-              </Marker>
+              {selectedOrigin && (
+                <Marker position={CITY_COORDINATES[selectedOrigin]}>
+                  <Tooltip>
+                    <Typography.Text code>{CITY_COORDINATES[selectedOrigin].join().replace(',', ', ')}</Typography.Text>
+                  </Tooltip>
+                </Marker>
+              )}
+
+              {selectedDestination && (
+                <Marker position={CITY_COORDINATES[selectedDestination]} title="Destino">
+                  <Tooltip>
+                    <Typography.Text code>{CITY_COORDINATES[selectedDestination].join().replace(',', ', ')}</Typography.Text>
+                  </Tooltip>
+                </Marker>
+              )}
             </MapContainer>
           </Card>
         </div>
