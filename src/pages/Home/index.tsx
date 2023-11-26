@@ -4,41 +4,20 @@ import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 
 import { getColBreakpoints } from 'src/utils/getColBreakpoints';
 
+import { CITY_OPTIONS } from './cities';
+
 import './styles.scss';
 
-const CITY_OPTIONS: DefaultOptionType[] = [
-  {
-    label: 'Microrregião Telêmaco Borda',
-    options: [
-      { label: 'Ortigueira', value: 'Ortigueira' },
-      { label: 'Imbaú', value: 'Imbaú' },
-      { label: 'Reserva', value: 'Reserva' },
-      { label: 'Tibagi', value: 'Tibagi' },
-      { label: 'Telêmaco Borba', value: 'Telêmaco Borba' },
-      { label: 'Ventania', value: 'Ventania' },
-    ],
-  },
-  {
-    label: 'Microrregião Jaguariaíva',
-    options: [
-      { label: 'Arapoti', value: 'Arapoti' },
-      { label: 'Sengés', value: 'Sengés' },
-      { label: 'Jaguariaíva', value: 'Jaguariaíva' },
-      { label: 'Piraí do Sul', value: 'Piraí do Sul' },
-    ],
-  },
-  {
-    label: 'Microrregião Ponta Grossa',
-    options: [
-      { label: 'Castro', value: 'Castro' },
-      { label: 'Carambeí', value: 'Carambeí' },
-      { label: 'Palmeira', value: 'Palmeira' },
-      { label: 'Ponta Grossa', value: 'Ponta Grossa' },
-    ],
-  },
-];
+function useHome() {
+  const [formInstance] = Form.useForm();
+  const selectedOrigin = Form.useWatch<string | undefined>('origin', formInstance);
+
+  return { formInstance, selectedOrigin };
+}
 
 export function Home() {
+  const { formInstance, selectedOrigin } = useHome();
+
   return (
     <div className="home-container">
       <Flex className="header" justify="center">
@@ -46,22 +25,39 @@ export function Home() {
       </Flex>
 
       <Layout.Content className="content">
-        <Form className="inputs-container" layout="vertical" onFinish={console.log}>
+        <Form className="inputs-container" form={formInstance} layout="vertical" onFinish={console.log}>
           <Row gutter={12}>
             <Col {...getColBreakpoints(7)}>
-              <Form.Item label="Origem" name="origem" rules={[{ required: true }]} required>
-                <Select options={CITY_OPTIONS} placeholder="Selecione uma cidade" autoFocus showSearch />
+              <Form.Item label="Origem" name="origin" rules={[{ required: true }]} required>
+                <Select
+                  options={CITY_OPTIONS}
+                  placeholder="Selecione uma cidade"
+                  autoFocus
+                  showSearch
+                  onSelect={(newOrigin: string) => {
+                    if (newOrigin === formInstance.getFieldValue('destination')) {
+                      formInstance.setFieldValue('destination', undefined);
+                    }
+                  }}
+                />
               </Form.Item>
             </Col>
 
             <Col {...getColBreakpoints(7)}>
-              <Form.Item label="Destino" name="destino" rules={[{ required: true }]} required>
-                <Select options={CITY_OPTIONS} placeholder="Selecione uma cidade" showSearch />
+              <Form.Item label="Destino" name="destination" rules={[{ required: true }]} required>
+                <Select
+                  options={CITY_OPTIONS.map(microRegion => ({
+                    ...microRegion,
+                    options: microRegion.options.filter((city: DefaultOptionType) => city.value !== selectedOrigin),
+                  }))}
+                  placeholder="Selecione uma cidade"
+                  showSearch
+                />
               </Form.Item>
             </Col>
 
             <Col {...getColBreakpoints(7)}>
-              <Form.Item initialValue="Carro" label="Veículo" name="veiculo" rules={[{ required: true }]} required>
+              <Form.Item initialValue="Carro" label="Veículo" name="vehicle" rules={[{ required: true }]} required>
                 <Select
                   options={[
                     { label: 'Carro', value: 'Carro' },
