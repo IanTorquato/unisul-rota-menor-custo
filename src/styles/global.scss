@@ -93,3 +93,14 @@ h6 {
 }
 
 /* #endregion */
+
+/* #region Form */
+.ant-form-vertical .ant-form-item {
+  margin-bottom: 8px;
+
+  .ant-form-item-label {
+    padding: 0;
+  }
+}
+
+/* #endregion */
