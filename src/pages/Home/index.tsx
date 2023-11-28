@@ -1,4 +1,4 @@
-import { Button, Card, Col, Flex, Form, Layout, Row, Select, Typography } from 'antd';
+import { Button, Card, Col, Dropdown, Flex, Form, Layout, Row, Select, Typography } from 'antd';
 import { DefaultOptionType } from 'antd/es/select';
 import { MapContainer, Marker, TileLayer, Tooltip } from 'react-leaflet';
 
@@ -26,7 +26,9 @@ export function Home() {
   return (
     <div className="home-container">
       <Flex className="header" justify="center">
-        <Typography.Title level={1}>Centro Ocidental Paranaense</Typography.Title>
+        <Dropdown menu={{ items: [{ label: 'Reset Form', key: 'reset', onClick: () => formInstance.resetFields() }] }} trigger={['contextMenu']}>
+          <Typography.Title level={1}>Centro Ocidental Paranaense</Typography.Title>
+        </Dropdown>
       </Flex>
 
       <Layout.Content className="content">
