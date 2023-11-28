@@ -2,11 +2,14 @@ import { Button, Card, Col, Flex, Form, Layout, Row, Select, Typography } from '
 import { DefaultOptionType } from 'antd/es/select';
 import { MapContainer, Marker, TileLayer, Tooltip } from 'react-leaflet';
 
+import { MapRoutingMachine } from 'src/components/MapRoutingMachine';
 import { getColBreakpoints } from 'src/utils/getColBreakpoints';
 
 import { CITY_COORDINATES, CITY_OPTIONS } from './cities';
 
 import './styles.scss';
+
+const INITIAL_MAP_POSITION: [number, number] = [-24.7548828, -50.3667741];
 
 function useHome() {
   const [formInstance] = Form.useForm();
@@ -84,11 +87,15 @@ export function Home() {
 
         <div className="map-container">
           <Card size="small">
-            <MapContainer center={[-24.7548828, -50.3667741]} id="map" scrollWheelZoom={false} zoom={9}>
+            <MapContainer center={INITIAL_MAP_POSITION} id="map" scrollWheelZoom={false} zoom={9}>
               <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               />
+
+              {selectedOrigin && selectedDestination && (
+                <MapRoutingMachine destinationCoords={CITY_COORDINATES[selectedDestination]} originCoords={CITY_COORDINATES[selectedOrigin]} />
+              )}
 
               {selectedOrigin && (
                 <Marker position={CITY_COORDINATES[selectedOrigin]}>
