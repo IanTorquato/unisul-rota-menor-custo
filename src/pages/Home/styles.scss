@@ -3,32 +3,26 @@
 .home-container {
   height: 100%;
 
-  > .header {
-    padding: 1rem 12px;
+  > .ant-layout-header {
+    align-items: center;
+    background-color: $ant-gray-1;
+    display: flex;
+    justify-content: center;
 
-    > h1 {
-      font-size: 2rem;
+    h1 {
+      font-size: 2.2rem;
     }
   }
 
-  > .content {
-    > .inputs-container {
-      background-color: $ant-gray-3;
-      margin-bottom: 4rem;
-      padding: 1rem 3vw;
+  > .ant-layout-has-sider {
+    > .ant-layout-sider {
+      background-color: $ant-gray-1;
+      padding: 8px 1rem;
     }
 
-    > .map-container {
-      display: flex;
-      justify-content: center;
-
-      > .ant-card {
-        box-shadow: 0 0 8px #0001;
-        width: 64%;
-
-        #map {
-          min-height: 36rem;
-        }
+    > main.ant-layout-content {
+      #map {
+        min-height: 100%;
       }
     }
   }
