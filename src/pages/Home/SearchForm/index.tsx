@@ -1,8 +1,10 @@
-import { Button, Form, FormInstance, FormProps, Select, Space } from 'antd';
+import { Button, Flex, Form, FormInstance, FormProps, Select, Space, Typography } from 'antd';
 import { DefaultOptionType } from 'antd/es/select';
 
 import { api } from 'src/core/api';
 import { CITY_OPTIONS } from 'src/pages/Home/cities';
+
+import './styles.scss';
 
 type SearchFormProps = Omit<FormProps, 'form'> & {
   formInstance: FormInstance;
@@ -22,7 +24,11 @@ export function SearchForm({ formInstance, ...rest }: SearchFormProps) {
   };
 
   return (
-    <Form form={formInstance} layout="vertical" onFinish={handleSubmit} {...rest}>
+    <Form className="container-search-form" form={formInstance} layout="vertical" onFinish={handleSubmit} {...rest}>
+      <Flex justify="center">
+        <Typography.Title level={2}>Buscar</Typography.Title>
+      </Flex>
+
       <Form.Item label="Origem" name="origem" rules={[{ required: true }]} required>
         <Select
           options={CITY_OPTIONS}
@@ -36,7 +42,6 @@ export function SearchForm({ formInstance, ...rest }: SearchFormProps) {
           }}
         />
       </Form.Item>
-
       <Form.Item label="Destino" name="destino" rules={[{ required: true }]} required>
         <Select
           options={CITY_OPTIONS.map(microRegion => ({
@@ -47,7 +52,6 @@ export function SearchForm({ formInstance, ...rest }: SearchFormProps) {
           showSearch
         />
       </Form.Item>
-
       <Form.Item initialValue="Carro" label="Veículo" name="veiculo" rules={[{ required: true }]} required>
         <Space.Compact style={{ width: '100%' }}>
           <Select
