@@ -1,6 +1,7 @@
 import { Button, Form, FormInstance, FormProps, Select, Space } from 'antd';
 import { DefaultOptionType } from 'antd/es/select';
 
+import { api } from 'src/core/api';
 import { CITY_OPTIONS } from 'src/pages/Home/cities';
 
 type SearchFormProps = Omit<FormProps, 'form'> & {
@@ -10,8 +11,18 @@ type SearchFormProps = Omit<FormProps, 'form'> & {
 export function SearchForm({ formInstance, ...rest }: SearchFormProps) {
   const selectedOrigin = Form.useWatch<string | undefined>('origem', formInstance);
 
+  const handleSubmit = async (dados: unknown) => {
+    try {
+      const resultado = await api.get('/rota-menor-custo', { params: dados }).then(({ data }) => data);
+
+      console.log(resultado);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
-    <Form form={formInstance} layout="vertical" onFinish={console.log} {...rest}>
+    <Form form={formInstance} layout="vertical" onFinish={handleSubmit} {...rest}>
       <Form.Item label="Origem" name="origem" rules={[{ required: true }]} required>
         <Select
           options={CITY_OPTIONS}
