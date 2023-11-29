@@ -3,27 +3,10 @@
 .home-container {
   height: 100%;
 
-  > .ant-layout-header {
-    align-items: center;
-    background-color: $ant-gray-1;
-    display: flex;
-    justify-content: center;
-
-    h1 {
-      font-size: 2.2rem;
-    }
-  }
-
   > .ant-layout-has-sider {
     > .ant-layout-sider {
       background-color: $ant-gray-1;
       padding: 8px 1rem;
-    }
-
-    > main.ant-layout-content {
-      #map {
-        min-height: 100%;
-      }
     }
   }
 }

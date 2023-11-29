@@ -1,5 +1,7 @@
 import { Layout, Typography } from 'antd';
 
+import './styles.scss';
+
 export function Header() {
   return (
     <Layout.Header>

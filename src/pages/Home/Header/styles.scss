@@ -1,0 +1,12 @@
+@import 'src/styles/variables';
+
+.home-container > .ant-layout-header {
+  align-items: center;
+  background-color: $ant-gray-1;
+  display: flex;
+  justify-content: center;
+
+  h1 {
+    font-size: 2.2rem;
+  }
+}

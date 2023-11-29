@@ -4,6 +4,8 @@ import { MapContainer, Marker, TileLayer, Tooltip } from 'react-leaflet';
 import { MapRoutingMachine } from 'src/components/MapRoutingMachine';
 import { CITY_COORDINATES } from 'src/pages/Home/cities';
 
+import './styles.scss';
+
 const INITIAL_MAP_POSITION: [number, number] = [-24.7548828, -50.3667741];
 
 type CustomMapProps = {
