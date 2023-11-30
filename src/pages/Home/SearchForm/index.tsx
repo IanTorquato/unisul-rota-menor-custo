@@ -1,4 +1,4 @@
-import { Button, Flex, Form, FormInstance, FormProps, Select, Space, Typography } from 'antd';
+import { Button, Flex, Form, FormInstance, FormProps, Select, Space, Typography, notification } from 'antd';
 import { DefaultOptionType } from 'antd/es/select';
 
 import { api } from 'src/core/api';
@@ -19,14 +19,26 @@ export function SearchForm({ formInstance, ...rest }: SearchFormProps) {
 
       console.log(resultado);
     } catch (error) {
-      console.error(error);
+      notification.error({
+        duration: 8,
+        message: 'Algo de errado não está certo',
+        description: (
+          <>
+            Se não gostou,{' '}
+            <Typography.Link href="https://github.com/IanTorquato/unisul-rota-menor-custo" referrerPolicy="no-referrer" target="_blank">
+              acessa o código
+            </Typography.Link>{' '}
+            e corrige 💖
+          </>
+        ),
+      });
     }
   };
 
   return (
     <Form className="container-search-form" form={formInstance} layout="vertical" onFinish={handleSubmit} {...rest}>
       <Flex justify="center">
-        <Typography.Title level={2}>Buscar</Typography.Title>
+        <Typography.Title level={2}>Escolha sua rota</Typography.Title>
       </Flex>
 
       <Form.Item label="Origem" name="origem" rules={[{ required: true }]} required>
@@ -42,6 +54,7 @@ export function SearchForm({ formInstance, ...rest }: SearchFormProps) {
           }}
         />
       </Form.Item>
+
       <Form.Item label="Destino" name="destino" rules={[{ required: true }]} required>
         <Select
           options={CITY_OPTIONS.map(microRegion => ({
@@ -52,6 +65,7 @@ export function SearchForm({ formInstance, ...rest }: SearchFormProps) {
           showSearch
         />
       </Form.Item>
+
       <Form.Item initialValue="Carro" label="Veículo" name="veiculo" rules={[{ required: true }]} required>
         <Space.Compact style={{ width: '100%' }}>
           <Select
