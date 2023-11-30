@@ -17,7 +17,7 @@ export function CustomMap({ formInstance }: CustomMapProps) {
   const selectedDestination = Form.useWatch<string | undefined>('destino', formInstance);
 
   return (
-    <MapContainer center={INITIAL_MAP_POSITION} id="map" scrollWheelZoom={false} zoom={9}>
+    <MapContainer center={INITIAL_MAP_POSITION} id="map" zoom={9} scrollWheelZoom>
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
