@@ -82,18 +82,20 @@ export function SearchForm({ formInstance, ...rest }: SearchFormProps) {
           />
         </Form.Item>
 
-        <Form.Item initialValue="Carro" label="Veículo" name="veiculo" rules={[{ required: true }]} required>
+        <Form.Item label="Veículo" rules={[{ required: true }]} required>
           <Space.Compact style={{ width: '100%' }}>
-            <Select
-              options={[
-                { label: 'Carro', value: 'Carro' },
-                { label: 'Caminhão', value: 'Caminhão' },
-                { label: 'Motocicleta', value: 'Motocicleta' },
-                { label: 'Micro-ônibus', value: 'Micro-ônibus' },
-                { label: 'Ônibus', value: 'Ônibus' },
-              ]}
-              showSearch
-            />
+            <Form.Item initialValue="Carro" name="veiculo" style={{ width: '100%' }}>
+              <Select
+                options={[
+                  { label: 'Carro', value: 'Carro' },
+                  { label: 'Caminhão', value: 'Caminhão' },
+                  { label: 'Motocicleta', value: 'Motocicleta' },
+                  { label: 'Micro-ônibus', value: 'Micro-ônibus' },
+                  { label: 'Ônibus', value: 'Ônibus' },
+                ]}
+                showSearch
+              />
+            </Form.Item>
 
             <Button htmlType="submit" type="primary">
               Calcular
