@@ -1,7 +1,7 @@
 @import 'src/styles/variables';
 
 .home-container .container-search-form {
-  > .ant-flex > .ant-typography {
+  .ant-flex > .ant-typography {
     color: $ant-gray-8;
     font-size: 1.5rem;
   }
