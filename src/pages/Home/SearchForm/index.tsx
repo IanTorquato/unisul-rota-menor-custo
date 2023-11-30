@@ -60,7 +60,11 @@ export function SearchForm({ formInstance, ...rest }: SearchFormProps) {
             autoFocus
             showSearch
             onSelect={(newOrigin: string) => {
-              if (newOrigin === formInstance.getFieldValue('destino')) {
+              const selectedDestino = formInstance.getFieldValue('destino');
+
+              if (!selectedDestino) {
+                (formInstance.getFieldInstance('destino') as HTMLSelectElement | undefined)?.focus();
+              } else if (newOrigin === selectedDestino) {
                 formInstance.setFieldValue('destino', undefined);
               }
             }}
