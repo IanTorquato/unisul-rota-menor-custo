@@ -2,12 +2,14 @@
 
 .home-container > .ant-layout-header {
   align-items: center;
-  background-color: $ant-gray-1;
+  background-color: $ant-geek-blue;
+  box-shadow: 0 0 12px #0004;
   display: flex;
   justify-content: center;
+  z-index: 1000;
 
   h1 {
-    color: $ant-gray-10;
+    color: $ant-gray-1;
     font-size: 2.2rem;
   }
 }
