@@ -2,7 +2,7 @@ import { Form, Layout } from 'antd';
 
 import { CustomMap } from './CustomMap';
 import { Header } from './Header';
-import { RoutePoints } from './RoutePoints';
+import { RouteSteps } from './RouteSteps';
 import { SearchForm } from './SearchForm';
 
 import './styles.scss';
@@ -24,7 +24,7 @@ export function Home() {
         <Layout.Sider width={344}>
           <SearchForm formInstance={formInstance} />
 
-          <RoutePoints />
+          <RouteSteps />
         </Layout.Sider>
 
         <Layout.Content>
