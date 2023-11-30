@@ -1,11 +1,18 @@
-import { ReactNode, createContext, useContext, useMemo } from 'react';
+import { Dispatch, ReactNode, SetStateAction, createContext, useContext, useMemo, useState } from 'react';
 
 import { LowestCostRouteType } from './types';
 
-const LowestCostRouteContext = createContext<LowestCostRouteType | undefined>(undefined);
+type LowestCostRouteContextProps = {
+  lowestCostRoute: LowestCostRouteType | undefined;
+  setLowestCostRoute: Dispatch<SetStateAction<LowestCostRouteType | undefined>>;
+};
+
+const LowestCostRouteContext = createContext<LowestCostRouteContextProps>({} as LowestCostRouteContextProps);
 
 export function LowestCostRouteProvider({ children }: { children: ReactNode }) {
-  const memoizedContextValue = useMemo<LowestCostRouteType | undefined>(() => undefined, []);
+  const [lowestCostRoute, setLowestCostRoute] = useState<LowestCostRouteType>();
+
+  const memoizedContextValue = useMemo<LowestCostRouteContextProps>(() => ({ lowestCostRoute, setLowestCostRoute }), [lowestCostRoute]);
 
   return <LowestCostRouteContext.Provider value={memoizedContextValue}>{children}</LowestCostRouteContext.Provider>;
 }

@@ -1,6 +1,8 @@
 import { Button, Flex, Form, FormInstance, FormProps, Select, Space, Spin, Typography, notification } from 'antd';
 import { DefaultOptionType } from 'antd/es/select';
 
+import { useLowestCostRoute } from 'src/contexts/LowestCostRoute';
+import { LowestCostRouteType } from 'src/contexts/LowestCostRoute/types';
 import { api } from 'src/core/api';
 import { useToggle } from 'src/hooks/useToggle';
 import { CITY_OPTIONS } from 'src/pages/Home/cities';
@@ -16,13 +18,15 @@ export function SearchForm({ formInstance, ...rest }: SearchFormProps) {
 
   const selectedOrigin = Form.useWatch<string | undefined>('origem', formInstance);
 
+  const { setLowestCostRoute } = useLowestCostRoute();
+
   const handleSubmit = async (dados: unknown) => {
     toggleIsLoading(true);
 
     try {
-      const resultado = await api.get('/rota-menor-custo', { params: dados }).then(({ data }) => data);
+      const response = await api.get<LowestCostRouteType>('/rota-menor-custo', { params: dados });
 
-      console.log(resultado);
+      setLowestCostRoute(response.data);
     } catch (error) {
       notification.error({
         duration: 8,
