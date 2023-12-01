@@ -22,6 +22,7 @@ export function SearchForm({ formInstance, ...rest }: SearchFormProps) {
 
   const handleSubmit = async (dados: unknown) => {
     toggleIsLoading(true);
+    setLowestCostRoute(undefined);
 
     try {
       const response = await api.get<LowestCostRouteType>('/rota-menor-custo', { params: dados });

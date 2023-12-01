@@ -3,13 +3,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Button } from 'antd';
 
 import { useLowestCostRoute } from 'src/contexts/LowestCostRoute';
-import './styles.scss';
 
-// type VehicleTimesProps = {};
+import './styles.scss';
 
 export function VehicleTimes() {
   const { lowestCostRoute } = useLowestCostRoute();
-  const { distanciaTotal, tempoMedioCaminhao, tempoMedioCarro, tempoMedioMoto, tempoMedioOnibus } = lowestCostRoute || {};
+
+  if (lowestCostRoute === undefined) {
+    return null;
+  }
+
+  const { /* distanciaTotal, */ tempoMedioCaminhao, tempoMedioCarro, tempoMedioMoto, tempoMedioOnibus } = lowestCostRoute;
 
   return (
     <div className="vehicle-times-container">
