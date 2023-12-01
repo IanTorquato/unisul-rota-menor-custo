@@ -1,0 +1,17 @@
+@import 'src/styles/variables';
+
+.home-container .vehicle-times-container {
+  column-gap: 4px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  margin: 12px 0;
+  padding: 0 8px;
+
+  > .ant-btn {
+    height: auto;
+
+    &.ant-btn-text {
+      color: $ant-gray-7;
+    }
+  }
+}

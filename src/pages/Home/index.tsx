@@ -4,6 +4,7 @@ import { CustomMap } from './CustomMap';
 import { Header } from './Header';
 import { RouteSteps } from './RouteSteps';
 import { SearchForm } from './SearchForm';
+import { VehicleTimes } from './VehicleTimes';
 
 import './styles.scss';
 
@@ -23,6 +24,8 @@ export function Home() {
       <Layout hasSider>
         <Layout.Sider width={344}>
           <SearchForm formInstance={formInstance} />
+
+          <VehicleTimes />
 
           <RouteSteps />
         </Layout.Sider>

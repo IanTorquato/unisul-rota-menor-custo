@@ -11,7 +11,7 @@ export function RouteSteps() {
     <Steps
       direction="vertical"
       items={lowestCostRoute?.caminho.map(({ destino, distancia, origem, tempoMedioCaminhao, tempoMedioCarro, tempoMedioMoto, tempoMedioOnibus }) => ({
-        title: `${origem} - ${destino}`,
+        title: `${origem.replace(' Pr', '')} - ${destino.replace(' Pr', '')}`,
         description: (
           <>
             Carro: {tempoMedioCarro} - Moto: {tempoMedioMoto} - Ônibus: {tempoMedioOnibus} - Caminhão: {tempoMedioCaminhao}
