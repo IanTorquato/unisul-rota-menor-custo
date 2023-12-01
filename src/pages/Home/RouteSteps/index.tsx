@@ -5,8 +5,6 @@ import { useLowestCostRoute } from 'src/contexts/LowestCostRoute';
 export function RouteSteps() {
   const { lowestCostRoute } = useLowestCostRoute();
 
-  console.log({ lowestCostRoute });
-
   return (
     <Steps
       direction="vertical"

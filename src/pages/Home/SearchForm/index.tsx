@@ -50,7 +50,7 @@ export function SearchForm({ formInstance, ...rest }: SearchFormProps) {
     <Form className="container-search-form" disabled={isLoading} form={formInstance} layout="vertical" onFinish={handleSubmit} {...rest}>
       <Spin spinning={isLoading}>
         <Flex justify="center">
-          <Typography.Title level={2}>Escolha sua rota</Typography.Title>
+          <Typography.Title level={2}>Para onde vamos hoje?</Typography.Title>
         </Flex>
 
         <Form.Item label="Origem" name="origem" rules={[{ required: true }]} required>
@@ -98,7 +98,7 @@ export function SearchForm({ formInstance, ...rest }: SearchFormProps) {
             </Form.Item>
 
             <Button htmlType="submit" type="primary">
-              Calcular
+              Calcular rota
             </Button>
           </Space.Compact>
         </Form.Item>
