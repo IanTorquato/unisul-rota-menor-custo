@@ -2,6 +2,7 @@ import { Form, FormInstance, Typography } from 'antd';
 import { MapContainer, Marker, TileLayer, Tooltip } from 'react-leaflet';
 
 import { MapRoutingMachine } from 'src/components/MapRoutingMachine';
+import { useLowestCostRoute } from 'src/contexts/LowestCostRoute';
 import { CITY_COORDINATES } from 'src/pages/Home/cities';
 
 import './styles.scss';
@@ -16,6 +17,8 @@ export function CustomMap({ formInstance }: CustomMapProps) {
   const selectedOrigin = Form.useWatch<string | undefined>('origem', formInstance);
   const selectedDestination = Form.useWatch<string | undefined>('destino', formInstance);
 
+  const { lowestCostRoute } = useLowestCostRoute();
+
   return (
     <MapContainer center={INITIAL_MAP_POSITION} id="map" zoom={9} scrollWheelZoom>
       <TileLayer
@@ -23,7 +26,7 @@ export function CustomMap({ formInstance }: CustomMapProps) {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
 
-      {selectedOrigin && selectedDestination && (
+      {selectedOrigin && selectedDestination && lowestCostRoute !== undefined && (
         <MapRoutingMachine destinationCoords={CITY_COORDINATES[selectedDestination]} originCoords={CITY_COORDINATES[selectedOrigin]} />
       )}
 
