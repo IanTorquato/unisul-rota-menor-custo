@@ -18,7 +18,7 @@ export function MapRoutingMachine({ destinationCoords, originCoords }: MapRoutin
         lineOptions: {
           extendToWaypoints: true,
           missingRouteTolerance: 4,
-          styles: [{ color: '#6fa1ec', weight: 4 }],
+          styles: [{ color: '#227bc9', weight: 4 }],
         },
 
         // show: false,

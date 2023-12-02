@@ -8,7 +8,7 @@ import './styles/global.scss';
 
 export function App() {
   return (
-    <ConfigProvider locale={ptBr} theme={{ token: { colorPrimary: '#2f54eb' } }}>
+    <ConfigProvider locale={ptBr} theme={{ token: { colorPrimary: '#0958d9' } }}>
       <AntApp>
         <LowestCostRouteProvider>
           <Home />
