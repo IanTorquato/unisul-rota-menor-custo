@@ -1,5 +1,8 @@
 import { Form, Layout } from 'antd';
 
+import { useLowestCostRoute } from 'src/contexts/LowestCostRoute';
+import { VehicleValueType } from 'src/core/constants/vehicles';
+
 import { CustomMap } from './CustomMap';
 import { Header } from './Header';
 import { RouteSteps } from './RouteSteps';
@@ -8,14 +11,11 @@ import { VehicleTimes } from './VehicleTimes';
 
 import './styles.scss';
 
-function useHome() {
-  const [formInstance] = Form.useForm();
-
-  return { formInstance };
-}
-
 export function Home() {
-  const { formInstance } = useHome();
+  const [formInstance] = Form.useForm();
+  const selectedVehicleToSearch = Form.useWatch<VehicleValueType>('veiculo', formInstance);
+
+  const { lowestCostRoute } = useLowestCostRoute();
 
   return (
     <Layout className="home-container">
@@ -25,9 +25,13 @@ export function Home() {
         <Layout.Sider width={344}>
           <SearchForm formInstance={formInstance} />
 
-          <VehicleTimes />
+          {lowestCostRoute !== undefined && (
+            <>
+              <VehicleTimes initialVehicle={selectedVehicleToSearch} />
 
-          <RouteSteps />
+              <RouteSteps />
+            </>
+          )}
         </Layout.Sider>
 
         <Layout.Content>
