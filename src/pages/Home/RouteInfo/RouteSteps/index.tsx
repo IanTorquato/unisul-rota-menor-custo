@@ -1,9 +1,17 @@
 import { Steps } from 'antd';
 
 import { useLowestCostRoute } from 'src/contexts/LowestCostRoute';
+import { VehicleValueType } from 'src/core/constants/vehicles';
 
-export function RouteSteps() {
+type RouteStepsProps = {
+  selectedVehicle: VehicleValueType;
+};
+
+export function RouteSteps({ selectedVehicle }: RouteStepsProps) {
   const { lowestCostRoute } = useLowestCostRoute();
+
+  // TODO
+  console.log(selectedVehicle);
 
   return (
     <Steps

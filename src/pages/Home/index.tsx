@@ -5,9 +5,8 @@ import { VehicleValueType } from 'src/core/constants/vehicles';
 
 import { CustomMap } from './CustomMap';
 import { Header } from './Header';
-import { RouteSteps } from './RouteSteps';
+import { RouteInfo } from './RouteInfo';
 import { SearchForm } from './SearchForm';
-import { VehicleTimes } from './VehicleTimes';
 
 import './styles.scss';
 
@@ -25,13 +24,7 @@ export function Home() {
         <Layout.Sider width={344}>
           <SearchForm formInstance={formInstance} />
 
-          {lowestCostRoute !== undefined && (
-            <>
-              <VehicleTimes initialVehicle={selectedVehicleToSearch} />
-
-              <RouteSteps />
-            </>
-          )}
+          {lowestCostRoute !== undefined && <RouteInfo initialVehicle={selectedVehicleToSearch} />}
         </Layout.Sider>
 
         <Layout.Content>

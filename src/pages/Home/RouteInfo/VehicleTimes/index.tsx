@@ -1,20 +1,18 @@
 import { faBus, faBusAlt, faCar, faMotorcycle, faTruckMoving } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Button } from 'antd';
-import { useState } from 'react';
 
 import { useLowestCostRoute } from 'src/contexts/LowestCostRoute';
 import { VehicleValueType } from 'src/core/constants/vehicles';
 
 import './styles.scss';
 
-type VehicleTimesProps = {
-  initialVehicle: VehicleValueType;
+export type VehicleTimesProps = {
+  selectedVehicle: VehicleValueType;
+  setSelectedVehicle: (newVehicle: VehicleValueType) => void;
 };
 
-export function VehicleTimes({ initialVehicle }: VehicleTimesProps) {
-  const [selectedVehicle, setSelectedVehicle] = useState<VehicleValueType>(initialVehicle);
-
+export function VehicleTimes({ selectedVehicle, setSelectedVehicle }: VehicleTimesProps) {
   const { lowestCostRoute } = useLowestCostRoute();
 
   if (lowestCostRoute === undefined) {
