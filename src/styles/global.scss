@@ -22,10 +22,8 @@ html {
   // Get value from browser (Default 16px)
   font-size: 100%;
 
-  > body {
-    > #root {
-      height: 100%;
-    }
+  > body > #root > .ant-app {
+    height: 100vh;
   }
 
   @media (width < $lg) {

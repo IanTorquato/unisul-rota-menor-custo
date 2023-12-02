@@ -1,4 +1,4 @@
-import { Button, Flex, Form, FormInstance, FormProps, Select, Space, Spin, Typography, notification } from 'antd';
+import { App, Button, Flex, Form, FormInstance, FormProps, Select, Space, Spin, Typography } from 'antd';
 import { DefaultOptionType } from 'antd/es/select';
 
 import { useLowestCostRoute } from 'src/contexts/LowestCostRoute';
@@ -18,6 +18,7 @@ export function SearchForm({ formInstance, ...rest }: SearchFormProps) {
 
   const selectedOrigin = Form.useWatch<string | undefined>('origem', formInstance);
 
+  const { notification } = App.useApp();
   const { setLowestCostRoute } = useLowestCostRoute();
 
   const handleSubmit = async (dados: unknown) => {
