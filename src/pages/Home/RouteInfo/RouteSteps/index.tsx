@@ -1,7 +1,9 @@
-import { Steps } from 'antd';
+import { Steps, Typography } from 'antd';
 
 import { useLowestCostRoute } from 'src/contexts/LowestCostRoute';
 import { VehicleValueType } from 'src/core/constants/vehicles';
+
+import './styles.scss';
 
 type RouteStepsProps = {
   selectedVehicle: VehicleValueType;
@@ -10,22 +12,30 @@ type RouteStepsProps = {
 export function RouteSteps({ selectedVehicle }: RouteStepsProps) {
   const { lowestCostRoute } = useLowestCostRoute();
 
-  // TODO
-  console.log(selectedVehicle);
-
   return (
     <Steps
+      className="route-steps-container"
       direction="vertical"
-      items={lowestCostRoute?.caminho.map(({ destino, distancia, origem, tempoMedioCaminhao, tempoMedioCarro, tempoMedioMoto, tempoMedioOnibus }) => ({
-        title: `${origem.replace(' Pr', '')} - ${destino.replace(' Pr', '')}`,
-        description: (
-          <>
-            Carro: {tempoMedioCarro} - Moto: {tempoMedioMoto} - Ônibus: {tempoMedioOnibus} - Caminhão: {tempoMedioCaminhao}
-          </>
-        ),
-        subTitle: `${distancia} Km`,
-        status: 'finish',
-      }))}
+      items={lowestCostRoute?.caminho.map(
+        ({ destino, distancia, origem, tempoMedioCaminhao, tempoMedioCarro, tempoMedioMoto, tempoMedioOnibus }, index) => ({
+          title: `${origem.replace(' Pr', '')} - ${destino.replace(' Pr', '')}`,
+          description: (
+            <>
+              {selectedVehicle === 'Carro' ? `Carro: ${tempoMedioCarro}` : ''}
+              {selectedVehicle === 'Caminhão' ? `Caminhão: ${tempoMedioCaminhao}` : ''}
+              {selectedVehicle === 'Motocicleta' ? `Motocicleta: ${tempoMedioMoto}` : ''}
+              {selectedVehicle === 'Micro-ônibus' ? `Micro-ônibus: NaN` : ''}
+              {selectedVehicle === 'Ônibus' ? `Ônibus: ${tempoMedioOnibus}` : ''}
+            </>
+          ),
+          subTitle: index === 0 && (
+            <Typography.Text type="warning" strong>
+              {distancia} km
+            </Typography.Text>
+          ),
+          status: 'finish',
+        }),
+      )}
       progressDot
     />
   );

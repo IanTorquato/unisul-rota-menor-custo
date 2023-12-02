@@ -1,0 +1,11 @@
+.home-container .route-steps-container {
+  .ant-steps-item-title {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+
+    > .ant-steps-item-subtitle > .ant-typography {
+      font-size: 16px;
+    }
+  }
+}
