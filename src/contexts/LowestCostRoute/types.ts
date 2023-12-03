@@ -4,6 +4,7 @@ type PathType = {
   origem: string;
   tempoMedioCaminhao: number;
   tempoMedioCarro: number;
+  tempoMedioMicroOnibus: number;
   tempoMedioMoto: number;
   tempoMedioOnibus: number;
 };
@@ -13,6 +14,7 @@ export type LowestCostRouteType = {
   distanciaTotal: number;
   tempoMedioCaminhao: number;
   tempoMedioCarro: number;
+  tempoMedioMicroOnibus: number;
   tempoMedioMoto: number;
   tempoMedioOnibus: number;
 };

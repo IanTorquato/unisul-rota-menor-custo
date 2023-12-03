@@ -17,15 +17,15 @@ export function RouteSteps({ selectedVehicle }: RouteStepsProps) {
       className="route-steps-container"
       direction="vertical"
       items={lowestCostRoute?.caminho.map(
-        ({ destino, distancia, origem, tempoMedioCaminhao, tempoMedioCarro, tempoMedioMoto, tempoMedioOnibus }, index) => ({
+        ({ destino, distancia, origem, tempoMedioCaminhao, tempoMedioCarro, tempoMedioMicroOnibus, tempoMedioMoto, tempoMedioOnibus }, index) => ({
           title: `${origem.replace(' Pr', '')} - ${destino.replace(' Pr', '')}`,
           description: (
             <>
-              {selectedVehicle === 'Carro' ? `Carro: ${formatHour(tempoMedioCarro)}` : ''}
-              {selectedVehicle === 'Caminhão' ? `Caminhão: ${formatHour(tempoMedioCaminhao)}` : ''}
-              {selectedVehicle === 'Motocicleta' ? `Motocicleta: ${formatHour(tempoMedioMoto)}` : ''}
-              {selectedVehicle === 'Micro-ônibus' ? `Micro-ônibus: NaN` : ''}
-              {selectedVehicle === 'Ônibus' ? `Ônibus: ${formatHour(tempoMedioOnibus)}` : ''}
+              {selectedVehicle === 'Carro' ? formatHour(tempoMedioCarro) : ''}
+              {selectedVehicle === 'Caminhão' ? formatHour(tempoMedioCaminhao) : ''}
+              {selectedVehicle === 'Motocicleta' ? formatHour(tempoMedioMoto) : ''}
+              {selectedVehicle === 'Micro-ônibus' ? formatHour(tempoMedioMicroOnibus) : ''}
+              {selectedVehicle === 'Ônibus' ? formatHour(tempoMedioOnibus) : ''}
               <br />
               {distancia} km
             </>

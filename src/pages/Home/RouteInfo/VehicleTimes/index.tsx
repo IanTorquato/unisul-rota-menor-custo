@@ -20,7 +20,7 @@ export function VehicleTimes({ selectedVehicle, setSelectedVehicle }: VehicleTim
     return null;
   }
 
-  const { /* distanciaTotal, */ tempoMedioCaminhao, tempoMedioCarro, tempoMedioMoto, tempoMedioOnibus } = lowestCostRoute;
+  const { tempoMedioCaminhao, tempoMedioCarro, tempoMedioMicroOnibus, tempoMedioMoto, tempoMedioOnibus } = lowestCostRoute;
 
   return (
     <div className="vehicle-times-container">
@@ -50,7 +50,7 @@ export function VehicleTimes({ selectedVehicle, setSelectedVehicle }: VehicleTim
       >
         <FontAwesomeIcon icon={faBusAlt} />
         <br />
-        NaNh
+        {formatHour(tempoMedioMicroOnibus)}
       </Button>
 
       <Button size="small" title="Ônibus" type={selectedVehicle === 'Ônibus' ? 'link' : 'text'} onClick={() => setSelectedVehicle('Ônibus')}>
