@@ -19,6 +19,9 @@ export function CustomMap({ formInstance }: CustomMapProps) {
 
   const { lowestCostRoute } = useLowestCostRoute();
 
+  const searchedOrigin = lowestCostRoute?.caminho.at(0)?.origem;
+  const searchedDestination = lowestCostRoute?.caminho.at(-1)?.destino;
+
   return (
     <MapContainer center={INITIAL_MAP_POSITION} id="map" zoom={9} scrollWheelZoom>
       <TileLayer
@@ -26,24 +29,29 @@ export function CustomMap({ formInstance }: CustomMapProps) {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
 
-      {selectedOrigin && selectedDestination && lowestCostRoute !== undefined && (
-        <MapRoutingMachine destinationCoords={CITY_COORDINATES[selectedDestination]} originCoords={CITY_COORDINATES[selectedOrigin]} />
-      )}
+      {lowestCostRoute === undefined ? (
+        <>
+          {selectedOrigin && (
+            <Marker position={CITY_COORDINATES[selectedOrigin]}>
+              <Tooltip>
+                <Typography.Text code>{CITY_COORDINATES[selectedOrigin].join().replace(',', ', ')}</Typography.Text>
+              </Tooltip>
+            </Marker>
+          )}
 
-      {selectedOrigin && (
-        <Marker position={CITY_COORDINATES[selectedOrigin]}>
-          <Tooltip>
-            <Typography.Text code>{CITY_COORDINATES[selectedOrigin].join().replace(',', ', ')}</Typography.Text>
-          </Tooltip>
-        </Marker>
-      )}
-
-      {selectedDestination && (
-        <Marker position={CITY_COORDINATES[selectedDestination]} title="Destino">
-          <Tooltip>
-            <Typography.Text code>{CITY_COORDINATES[selectedDestination].join().replace(',', ', ')}</Typography.Text>
-          </Tooltip>
-        </Marker>
+          {selectedDestination && (
+            <Marker position={CITY_COORDINATES[selectedDestination]} title="Destino">
+              <Tooltip>
+                <Typography.Text code>{CITY_COORDINATES[selectedDestination].join().replace(',', ', ')}</Typography.Text>
+              </Tooltip>
+            </Marker>
+          )}
+        </>
+      ) : (
+        searchedOrigin &&
+        searchedDestination && (
+          <MapRoutingMachine destinationCoords={CITY_COORDINATES[searchedDestination!]} originCoords={CITY_COORDINATES[searchedOrigin!]} />
+        )
       )}
     </MapContainer>
   );
