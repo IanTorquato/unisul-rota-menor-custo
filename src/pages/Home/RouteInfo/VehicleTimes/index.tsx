@@ -4,6 +4,7 @@ import { Button } from 'antd';
 
 import { useLowestCostRoute } from 'src/contexts/LowestCostRoute';
 import { VehicleValueType } from 'src/core/constants/vehicles';
+import { formatHour } from 'src/utils/formatHour';
 
 import './styles.scss';
 
@@ -26,19 +27,19 @@ export function VehicleTimes({ selectedVehicle, setSelectedVehicle }: VehicleTim
       <Button size="small" title="Carro" type={selectedVehicle === 'Carro' ? 'link' : 'text'} onClick={() => setSelectedVehicle('Carro')}>
         <FontAwesomeIcon icon={faCar} />
         <br />
-        {tempoMedioCarro}h
+        {formatHour(tempoMedioCarro)}
       </Button>
 
       <Button size="small" title="Caminhão" type={selectedVehicle === 'Caminhão' ? 'link' : 'text'} onClick={() => setSelectedVehicle('Caminhão')}>
         <FontAwesomeIcon icon={faTruckMoving} />
         <br />
-        {tempoMedioCaminhao}h
+        {formatHour(tempoMedioCaminhao)}
       </Button>
 
       <Button size="small" title="Motocicleta" type={selectedVehicle === 'Motocicleta' ? 'link' : 'text'} onClick={() => setSelectedVehicle('Motocicleta')}>
         <FontAwesomeIcon icon={faMotorcycle} />
         <br />
-        {tempoMedioMoto}h
+        {formatHour(tempoMedioMoto)}
       </Button>
 
       <Button
@@ -55,7 +56,7 @@ export function VehicleTimes({ selectedVehicle, setSelectedVehicle }: VehicleTim
       <Button size="small" title="Ônibus" type={selectedVehicle === 'Ônibus' ? 'link' : 'text'} onClick={() => setSelectedVehicle('Ônibus')}>
         <FontAwesomeIcon icon={faBus} />
         <br />
-        {tempoMedioOnibus}h
+        {formatHour(tempoMedioOnibus)}
       </Button>
     </div>
   );

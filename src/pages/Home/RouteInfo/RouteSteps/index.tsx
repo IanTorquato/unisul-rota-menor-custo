@@ -2,7 +2,7 @@ import { Steps, Typography } from 'antd';
 
 import { useLowestCostRoute } from 'src/contexts/LowestCostRoute';
 import { VehicleValueType } from 'src/core/constants/vehicles';
-
+import { formatHour } from 'src/utils/formatHour';
 import './styles.scss';
 
 type RouteStepsProps = {
@@ -21,11 +21,11 @@ export function RouteSteps({ selectedVehicle }: RouteStepsProps) {
           title: `${origem.replace(' Pr', '')} - ${destino.replace(' Pr', '')}`,
           description: (
             <>
-              {selectedVehicle === 'Carro' ? `Carro: ${tempoMedioCarro}` : ''}
-              {selectedVehicle === 'Caminhão' ? `Caminhão: ${tempoMedioCaminhao}` : ''}
-              {selectedVehicle === 'Motocicleta' ? `Motocicleta: ${tempoMedioMoto}` : ''}
+              {selectedVehicle === 'Carro' ? `Carro: ${formatHour(tempoMedioCarro)}` : ''}
+              {selectedVehicle === 'Caminhão' ? `Caminhão: ${formatHour(tempoMedioCaminhao)}` : ''}
+              {selectedVehicle === 'Motocicleta' ? `Motocicleta: ${formatHour(tempoMedioMoto)}` : ''}
               {selectedVehicle === 'Micro-ônibus' ? `Micro-ônibus: NaN` : ''}
-              {selectedVehicle === 'Ônibus' ? `Ônibus: ${tempoMedioOnibus}` : ''}
+              {selectedVehicle === 'Ônibus' ? `Ônibus: ${formatHour(tempoMedioOnibus)}` : ''}
               <br />
               {distancia} km
             </>
