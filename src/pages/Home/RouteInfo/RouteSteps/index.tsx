@@ -26,11 +26,13 @@ export function RouteSteps({ selectedVehicle }: RouteStepsProps) {
               {selectedVehicle === 'Motocicleta' ? `Motocicleta: ${tempoMedioMoto}` : ''}
               {selectedVehicle === 'Micro-ônibus' ? `Micro-ônibus: NaN` : ''}
               {selectedVehicle === 'Ônibus' ? `Ônibus: ${tempoMedioOnibus}` : ''}
+              <br />
+              {distancia} km
             </>
           ),
           subTitle: index === 0 && (
             <Typography.Text type="warning" strong>
-              {distancia} km
+              {lowestCostRoute.distanciaTotal} km
             </Typography.Text>
           ),
           status: 'finish',
