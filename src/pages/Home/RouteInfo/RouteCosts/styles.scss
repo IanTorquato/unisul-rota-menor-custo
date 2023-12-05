@@ -7,12 +7,11 @@
     margin-bottom: 8px;
 
     .ant-typography {
-      font-size: 15px;
-      font-weight: bold;
+      line-height: normal;
     }
 
-    strong {
-      font-weight: normal;
+    .ant-typography:not(.ant-typography-warning) {
+      font-size: 16px;
     }
   }
 
