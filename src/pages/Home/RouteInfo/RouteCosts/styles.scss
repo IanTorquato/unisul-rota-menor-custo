@@ -1,0 +1,22 @@
+@import 'src/styles/variables';
+
+.route-costs-container {
+  margin: 16px 0 24px;
+
+  > .ant-space {
+    margin-bottom: 8px;
+
+    .ant-typography {
+      font-size: 15px;
+      font-weight: bold;
+    }
+
+    strong {
+      font-weight: normal;
+    }
+  }
+
+  > .ant-flex .ant-space-item {
+    color: $ant-gray-8 !important;
+  }
+}

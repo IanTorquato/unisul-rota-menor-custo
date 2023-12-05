@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import { VehicleValueType } from 'src/core/constants/vehicles';
 
+import { RouteCosts } from './RouteCosts';
 import { RouteSteps } from './RouteSteps';
 import { VehicleTimes } from './VehicleTimes';
 
@@ -15,6 +16,8 @@ export function RouteInfo({ initialVehicle }: RouteInfoProps) {
   return (
     <>
       <VehicleTimes selectedVehicle={selectedVehicle} setSelectedVehicle={setSelectedVehicle} />
+
+      <RouteCosts />
 
       <RouteSteps selectedVehicle={selectedVehicle} />
     </>
