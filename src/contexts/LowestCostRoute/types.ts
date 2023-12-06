@@ -7,6 +7,8 @@ type PathType = {
   tempoMedioMicroOnibus: number;
   tempoMedioMoto: number;
   tempoMedioOnibus: number;
+
+  custoPedagio?: number;
 };
 
 export type LowestCostRouteType = {
@@ -17,4 +19,7 @@ export type LowestCostRouteType = {
   tempoMedioMicroOnibus: number;
   tempoMedioMoto: number;
   tempoMedioOnibus: number;
+
+  custoPedagio?: number;
+  custoRefeicao?: number;
 };

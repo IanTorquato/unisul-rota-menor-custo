@@ -1,9 +1,11 @@
 import { faGasPump, faRoadBarrier, faUtensils } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Flex, Space, Tooltip, Typography } from 'antd';
+import { useMemo } from 'react';
 
 import { useLowestCostRoute } from 'src/contexts/LowestCostRoute';
 import { FuelAverage, VehicleValueType } from 'src/core/constants/vehicles';
+import { formatCurrency } from 'src/utils/formatCurrency';
 
 import './styles.scss';
 
@@ -16,14 +18,10 @@ const FUEL_PRICE = 6;
 export function RouteCosts({ selectedVehicle }: RouteCostsProps) {
   const { lowestCostRoute } = useLowestCostRoute();
 
-  const calculateCost = () => {
-    const cost = (lowestCostRoute!.distanciaTotal / FuelAverage[selectedVehicle]) * FUEL_PRICE;
+  const { custoPedagio = 0, custoRefeicao = 0 } = lowestCostRoute || {};
 
-    return cost.toLocaleString('pt-BR', {
-      style: 'currency',
-      currency: 'BRL',
-    });
-  };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const custoCombustivel = useMemo(() => (lowestCostRoute!.distanciaTotal / FuelAverage[selectedVehicle]) * FUEL_PRICE, [selectedVehicle]);
 
   return (
     <Flex align="center" className="route-costs-container" vertical>
@@ -32,26 +30,26 @@ export function RouteCosts({ selectedVehicle }: RouteCostsProps) {
 
         <Typography.Text type="success" strong>
           {/* TODO: Calculate total */}
-          R$ 400,00
+          {formatCurrency(custoCombustivel + custoPedagio + custoRefeicao)}
         </Typography.Text>
       </Space>
 
       <Flex justify="space-evenly" style={{ width: '100%' }}>
         <Tooltip placement="bottom" title="Combustível">
           <Space size={4}>
-            <FontAwesomeIcon icon={faGasPump} /> <div>{calculateCost()}</div>
+            <FontAwesomeIcon icon={faGasPump} /> <div>{formatCurrency(custoCombustivel)}</div>
           </Space>
         </Tooltip>
 
         <Tooltip placement="bottom" title="Pedágio">
           <Space size={4}>
-            <FontAwesomeIcon icon={faRoadBarrier} /> <div>R$ 150,00</div>
+            <FontAwesomeIcon icon={faRoadBarrier} /> <div>{formatCurrency(custoPedagio)}</div>
           </Space>
         </Tooltip>
 
         <Tooltip placement="bottom" title="Alimentação">
           <Space size={4}>
-            <FontAwesomeIcon icon={faUtensils} /> <div>R$ 100,00</div>
+            <FontAwesomeIcon icon={faUtensils} /> <div>{formatCurrency(custoRefeicao)}</div>
           </Space>
         </Tooltip>
       </Flex>
