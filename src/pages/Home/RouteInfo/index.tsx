@@ -17,7 +17,7 @@ export function RouteInfo({ initialVehicle }: RouteInfoProps) {
     <>
       <VehicleTimes selectedVehicle={selectedVehicle} setSelectedVehicle={setSelectedVehicle} />
 
-      <RouteCosts />
+      <RouteCosts initialVehicle={initialVehicle}/>
 
       <RouteSteps selectedVehicle={selectedVehicle} />
     </>
