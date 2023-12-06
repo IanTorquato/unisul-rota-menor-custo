@@ -18,7 +18,20 @@ const FUEL_PRICE = 6;
 export function RouteCosts({ selectedVehicle }: RouteCostsProps) {
   const { lowestCostRoute } = useLowestCostRoute();
 
-  const { custoPedagio = 0, custoRefeicao = 0 } = lowestCostRoute || {};
+  const {  custoRefeicao = 0 } = lowestCostRoute || {};
+
+  const { custoPedagiosViagem } = lowestCostRoute || {};
+
+  const custoPedagios = {
+    "Carro": custoPedagiosViagem?.carro,
+    "Caminhão": custoPedagiosViagem?.caminhao,
+    "Motocicleta": custoPedagiosViagem?.moto,
+    "Micro-ônibus": custoPedagiosViagem?.microOnibus,
+    "Ônibus": custoPedagiosViagem?.onibus
+  };
+  
+  const custoPedagio = custoPedagios[selectedVehicle] || 0;
+
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const custoCombustivel = useMemo(() => (lowestCostRoute!.distanciaTotal / FuelAverage[selectedVehicle]) * FUEL_PRICE, [selectedVehicle]);

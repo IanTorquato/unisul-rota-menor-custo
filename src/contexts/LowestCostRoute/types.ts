@@ -20,6 +20,12 @@ export type LowestCostRouteType = {
   tempoMedioMoto: number;
   tempoMedioOnibus: number;
 
-  custoPedagio?: number;
+  custoPedagiosViagem?: {
+    carro: number,
+    moto: number,
+    caminhao: number,
+    microOnibus: number,
+    onibus: number
+  };
   custoRefeicao?: number;
 };
