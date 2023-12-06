@@ -18,20 +18,18 @@ const FUEL_PRICE = 6;
 export function RouteCosts({ selectedVehicle }: RouteCostsProps) {
   const { lowestCostRoute } = useLowestCostRoute();
 
-  const {  custoRefeicao = 0 } = lowestCostRoute || {};
+  const { custoPedagiosViagem, custoRefeicao = 0 } = lowestCostRoute || {};
 
-  const { custoPedagiosViagem } = lowestCostRoute || {};
-
-  const custoPedagios = {
-    "Carro": custoPedagiosViagem?.carro,
-    "Caminhão": custoPedagiosViagem?.caminhao,
-    "Motocicleta": custoPedagiosViagem?.moto,
-    "Micro-ônibus": custoPedagiosViagem?.microOnibus,
-    "Ônibus": custoPedagiosViagem?.onibus
+  const custoPedagioPorVeiculo = {
+    Carro: custoPedagiosViagem?.carro,
+    Caminhão: custoPedagiosViagem?.caminhao,
+    Motocicleta: custoPedagiosViagem?.moto,
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    'Micro-ônibus': custoPedagiosViagem?.microOnibus,
+    Ônibus: custoPedagiosViagem?.onibus,
   };
-  
-  const custoPedagio = custoPedagios[selectedVehicle] || 0;
 
+  const custoPedagio = custoPedagioPorVeiculo[selectedVehicle] || 0;
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const custoCombustivel = useMemo(() => (lowestCostRoute!.distanciaTotal / FuelAverage[selectedVehicle]) * FUEL_PRICE, [selectedVehicle]);
@@ -42,7 +40,6 @@ export function RouteCosts({ selectedVehicle }: RouteCostsProps) {
         <Typography.Text strong>Custos estimados:</Typography.Text>
 
         <Typography.Text type="success" strong>
-          {/* TODO: Calculate total */}
           {formatCurrency(custoCombustivel + custoPedagio + custoRefeicao)}
         </Typography.Text>
       </Space>
