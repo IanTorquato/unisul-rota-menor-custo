@@ -20,7 +20,7 @@ export function RouteCosts({ selectedVehicle }: RouteCostsProps) {
 
   const { custoPedagiosViagem, custoRefeicao = 0 } = lowestCostRoute || {};
 
-  const custoPedagioPorVeiculo = {
+  const custoPedagioPorVeiculo: Record<VehicleValueType, number | undefined> = {
     Carro: custoPedagiosViagem?.carro,
     Caminhão: custoPedagiosViagem?.caminhao,
     Motocicleta: custoPedagiosViagem?.moto,

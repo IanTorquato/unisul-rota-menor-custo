@@ -1,12 +1,21 @@
 .home-container .route-steps-container {
+  position: relative;
+
+  > .ant-space {
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    .ant-typography {
+      font-size: 16px;
+      line-height: normal;
+    }
+  }
+
   .ant-steps-item-title {
     align-items: center;
     display: flex;
     justify-content: space-between;
-    line-height: normal;
-
-    > .ant-steps-item-subtitle > .ant-typography {
-      font-size: 16px;
-    }
+    line-height: normal !important;
   }
 }
