@@ -2,7 +2,9 @@ import { Steps, Typography } from 'antd';
 
 import { useLowestCostRoute } from 'src/contexts/LowestCostRoute';
 import { VehicleValueType } from 'src/core/constants/vehicles';
+import { formatCurrency } from 'src/utils/formatCurrency';
 import { formatHour } from 'src/utils/formatHour';
+
 import './styles.scss';
 
 type RouteStepsProps = {
@@ -17,7 +19,10 @@ export function RouteSteps({ selectedVehicle }: RouteStepsProps) {
       className="route-steps-container"
       direction="vertical"
       items={lowestCostRoute?.caminho.map(
-        ({ destino, distancia, origem, tempoMedioCaminhao, tempoMedioCarro, tempoMedioMicroOnibus, tempoMedioMoto, tempoMedioOnibus }, index) => ({
+        (
+          { custoPedagio, destino, distancia, origem, tempoMedioCaminhao, tempoMedioCarro, tempoMedioMicroOnibus, tempoMedioMoto, tempoMedioOnibus },
+          index,
+        ) => ({
           title: `${origem.replace(' Pr', '')} - ${destino.replace(' Pr', '')}`,
           description: (
             <>
@@ -28,6 +33,8 @@ export function RouteSteps({ selectedVehicle }: RouteStepsProps) {
               {selectedVehicle === 'Ônibus' ? formatHour(tempoMedioOnibus) : ''}
               <br />
               {distancia} km
+              <br />
+              {custoPedagio && `Pedágio: ${formatCurrency(12)}`}
             </>
           ),
           subTitle: index === 0 && (

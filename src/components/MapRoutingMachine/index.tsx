@@ -3,6 +3,7 @@ import L from 'leaflet';
 import { useMemo } from 'react';
 
 import 'leaflet-routing-machine';
+
 import './styles.scss';
 
 type MapRoutingMachineProps = {
