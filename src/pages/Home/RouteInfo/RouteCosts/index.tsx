@@ -1,6 +1,6 @@
 import { faGasPump, faRoadBarrier, faUtensils } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Flex, Space, Typography } from 'antd';
+import { Flex, Space, Tooltip, Typography } from 'antd';
 
 import './styles.scss';
 
@@ -15,17 +15,23 @@ export function RouteCosts() {
       </Space>
 
       <Flex justify="space-evenly" style={{ width: '100%' }}>
-        <Space size={4}>
-          <FontAwesomeIcon icon={faRoadBarrier} /> <div>R$ 150,00</div>
-        </Space>
+        <Tooltip placement="bottom" title="Pedágio">
+          <Space size={4}>
+            <FontAwesomeIcon icon={faRoadBarrier} /> <div>R$ 150,00</div>
+          </Space>
+        </Tooltip>
 
-        <Space size={4}>
-          <FontAwesomeIcon icon={faGasPump} /> <div>R$ 150,00</div>
-        </Space>
+        <Tooltip placement="bottom" title="Combustível">
+          <Space size={4}>
+            <FontAwesomeIcon icon={faGasPump} /> <div>R$ 150,00</div>
+          </Space>
+        </Tooltip>
 
-        <Space size={4}>
-          <FontAwesomeIcon icon={faUtensils} /> <div>R$ 100,00</div>
-        </Space>
+        <Tooltip placement="bottom" title="Alimentação">
+          <Space size={4}>
+            <FontAwesomeIcon icon={faUtensils} /> <div>R$ 100,00</div>
+          </Space>
+        </Tooltip>
       </Flex>
     </Flex>
   );
